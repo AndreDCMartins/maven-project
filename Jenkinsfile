@@ -30,9 +30,11 @@ stages{
                 expression {
                     TO_EXECUTE = sh(returnStdout: true, 
                         script: 
-                        'if [[ $MODEL_PATH =~ ([^/]+)/([^/]+)/Peril([^/]+)/([^/]+)/([^/]+)$ ]]; 
-                        then echo "RUN"; 
-                        else echo “SKIP”; fi').trim()
+                        'if [[ $MODEL_PATH =~ ([^/]+)/([^/]+)/Peril([^/]+)/([^/]+)/([^/]+)$ ]]; then 
+                            echo "RUN"; else 
+                            echo “SKIP”; 
+                        fi;'
+                        ).trim()
                     return TO_EXECUTE == 'RUN'
                 }
             }
