@@ -26,7 +26,11 @@ stages{
         }
 
         stage ('Deployments'){
-            when { ${BUILD_LOG_REGEX,regex="Keep one snapshot per week"} }
+            when { 
+                expression {
+                    TO_EXECUTE = sh(returnStdout: true, script: 'echo YES')
+                    return TO_EXECUTE == 'YES'
+                }
             }
             steps{
                 sh 'echo "Now Deploying"'
