@@ -13,19 +13,20 @@ pipeline {
 stages{
         stage('Build'){
             steps {
-                sh 'mvn clean package'
+                sh 'echo "Now Building"'
+                //sh 'mvn clean package'
             }
             post {
                 success {
                     echo 'Now Archiving...'
-                    archiveArtifacts artifacts: '**/target/*.war'
+                    //archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
         }
 
         stage ('Deployments'){
             steps{
-                sh "echo DEPLOYMENTS"
+                sh 'echo "Now Deploying"'
             }
         }
     }
