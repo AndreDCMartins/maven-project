@@ -28,12 +28,10 @@ stages{
         stage ('Deployments'){
             when { 
                 expression {
-                    TO_EXECUTE = sh(returnStdout: true, 
+                    TO_EXECUTE = sh(
+                        returnStdout: true, 
                         script: 
-                        'if [[ $MODEL_PATH =~ ([^/]+)/([^/]+)/Peril([^/]+)/([^/]+)/([^/]+)$ ]]; then 
-                            echo "RUN"; else 
-                            echo “SKIP”; 
-                        fi;'
+                        'if [[ $MODEL_PATH =~ ([^/]+)/([^/]+)/Peril([^/]+)/([^/]+)/([^/]+)$ ]]; then echo "RUN"; else echo “SKIP”; fi;'
                         ).trim()
                     return TO_EXECUTE == 'RUN'
                 }
