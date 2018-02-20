@@ -28,7 +28,7 @@ stages{
         stage ('Deployments'){
             when { 
                 expression {
-                    TO_EXECUTE = sh(returnStdout: true, script: 'echo YES')
+                    TO_EXECUTE = sh(returnStdout: true, script: 'echo "YES"').trim()
                     return TO_EXECUTE == 'YES'
                 }
             }
