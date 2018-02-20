@@ -4,6 +4,7 @@ pipeline {
     parameters {
          string(name: 'tomcat_dev', defaultValue: '35.166.210.154', description: 'Staging Server')
          string(name: 'tomcat_prod', defaultValue: '34.209.233.6', description: 'Production Server')
+         string(name: 'MODEL_PATH', defaultValue: 'models/stuff/Perilthing/model/submodel', description: 'Path to the model')
     }
 
     triggers {
@@ -25,6 +26,9 @@ stages{
         }
 
         stage ('Deployments'){
+            when {
+                expression { return $MODEL_PATH ==~ /([^/]+)/([^/]+)/Peril([^/]+)/([^/]+)/([^/]+)$/}
+            }
             steps{
                 sh 'echo "Now Deploying"'
             }
