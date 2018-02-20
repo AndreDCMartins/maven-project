@@ -26,8 +26,7 @@ stages{
         }
 
         stage ('Deployments'){
-            when {
-                expression { return $MODEL_PATH ==~ /([^/]+)/([^/]+)/Peril([^/]+)/([^/]+)/([^/]+)$/}
+            when { ${BUILD_LOG_REGEX,regex="Keep one snapshot per week"} }
             }
             steps{
                 sh 'echo "Now Deploying"'
